@@ -474,7 +474,7 @@ namespace SharpGVGP
                 else
                 {
                     ConnectionCount += nOutputs * nInputs;
-                }         
+                }
                 Neurons = new NeuronType[NeuronCount];
                 Connections = new Connection[ConnectionCount];
                 for (ulong i = 0; i < nInputs; i++)
@@ -551,7 +551,9 @@ namespace SharpGVGP
                 }
                 for (ulong i = 0; i < size; i++)
                 {
-                    Neuron n = Inputs.Find(x => x.ID == targets[i]);
+                    Neuron? n = Inputs.Find(x => x.ID == targets[i]);
+                    if(n is null)
+                        continue;
                     n.Output = Activation(inputs[i]);
                     n.Ready = true;
                 }
@@ -604,7 +606,7 @@ namespace SharpGVGP
             else
             {
                 return false;
-            }            
+            }
         }
 
         public double[] GetOutputs()
@@ -631,7 +633,7 @@ namespace SharpGVGP
 
         public double Sigmoid(double x)
         {
-            return 1 / (1+Math.Exp(-x));            
+            return 1 / (1+Math.Exp(-x));
         }
     }
 }

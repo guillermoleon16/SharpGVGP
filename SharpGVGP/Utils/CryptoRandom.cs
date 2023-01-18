@@ -16,11 +16,13 @@ namespace SharpGVGP
         /// <summary>
         /// The last generated random <c>double</c> value.
         /// </summary>
-        public double DoubleValue { get; set; }
+        public double DoubleValue { get; private set; }
         /// <summary>
         /// The last generated random <c>int</c> value.
         /// </summary>
-        public double IntValue { get; set; }
+        public int IntValue { get; private set; }
+
+        private Random RNG;
 
         /// <summary>
         /// Creates a new instance of the <c>CryptoRandom</c> class, generating two
@@ -28,52 +30,41 @@ namespace SharpGVGP
         /// </summary>
         public CryptoRandom()
         {
-            using (RNGCryptoServiceProvider p = new RNGCryptoServiceProvider())
-            {
-                Random r = new Random(p.GetHashCode());
-                this.DoubleValue = r.NextDouble();
-                this.IntValue = r.Next();
-            }
+            RNG = new Random();
+            NewDoubleValue();
+            NewIntValue();
         }
 
+        /// <summary>
+        /// Creates a new instance of the <c>CryptoRandom</c> class, generating two
+        /// initial random values for <c>DoubleValue</c> and an <c>IntValue</c>
+        /// between two values.
+        /// </summary>
+        /// <param name="min">Minimum value for <c>IntValue</c></param>
+        /// <param name="max">Maximum value for <c>IntValue</c></param>
         public CryptoRandom(int min, int max)
         {
-            using (RNGCryptoServiceProvider p = new RNGCryptoServiceProvider())
-            {
-                Random r = new Random(p.GetHashCode());
-                this.DoubleValue = r.NextDouble();
-                this.IntValue = r.Next(min,max+1);
-            }
+            RNG = new Random();
+            NewDoubleValue();
+            NewIntValue(min, max);
         }
 
-        public void NewDoubleValue()
+        public double NewDoubleValue()
         {
-            using (RNGCryptoServiceProvider p = new RNGCryptoServiceProvider())
-            {
-                Random r = new Random(p.GetHashCode());
-                this.DoubleValue = r.NextDouble();
-                p.Dispose();
-            }
+            this.DoubleValue = RNG.NextDouble();
+            return this.DoubleValue;
         }
 
-        public void NewIntValue()
+        public int NewIntValue()
         {
-            using (RNGCryptoServiceProvider p = new RNGCryptoServiceProvider())
-            {
-                Random r = new Random(p.GetHashCode());
-                this.IntValue = r.Next();
-                p.Dispose();
-            }
+            this.IntValue = RNG.Next();
+            return this.IntValue;
         }
 
-        public void NewIntValue(int min, int max)
+        public int NewIntValue(int min, int max)
         {
-            using (RNGCryptoServiceProvider p = new RNGCryptoServiceProvider())
-            {
-                Random r = new Random(p.GetHashCode());
-                this.IntValue = r.Next(min,max+1);
-                p.Dispose();
-            }
+            this.IntValue = RNG.Next(min,max+1);
+            return this.IntValue;
         }
     }
 }
