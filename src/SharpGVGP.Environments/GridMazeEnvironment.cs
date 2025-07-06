@@ -8,6 +8,7 @@ public class GridMazeEnvironment : IEnvironment<GridCoordinates, MazeAction>
 {
     private readonly int[,] _grid;
     private GridCoordinates _agent;
+    private GridCoordinates _start;
 
     public GridMazeEnvironment(int[,] grid, GridCoordinates start)
     {
@@ -17,7 +18,7 @@ public class GridMazeEnvironment : IEnvironment<GridCoordinates, MazeAction>
 
     public GridCoordinates Reset()
     {
-        // Assume start stored or passed in ctor
+        _agent = _start;
         return _agent;
     }
 
