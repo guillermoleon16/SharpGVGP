@@ -15,6 +15,7 @@ internal class Program
         };
         var env = new GridMazeEnvironment(grid, new GridCoordinates { X = 0, Y = 0 });
         var agent = new RandomAgent<GridCoordinates, MazeAction>(s => env.Actions(s).ToArray());
+        //var agent = new QLearningAgent<MazeAction>(env, alpha: 0.1, gamma: 0.99, epsilon: 0.2);
         var viz = new ConsoleVisualizer();
 
         for (int ep = 1; ep <= 5; ep++)
