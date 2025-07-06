@@ -4,10 +4,10 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <PackageId>SharpGVGP.Environments</PackageId>
+    <PackageId>SharpGVGP.Agents</PackageId>
     <Version>0.1.0</Version>
     <Authors>guillermoleon16</Authors>
-    <Description>Sample grid-based environments for SharpGVGP</Description>
+    <Description>Sample agents for SharpGVGP</Description>
   </PropertyGroup>
 
   <ItemGroup>

@@ -4,6 +4,14 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <PackageId>SharpGVGP.Visualization</PackageId>
+    <Version>0.1.0</Version>
+    <Authors>guillermoleon16</Authors>
+    <Description>Visualization tools for SharpGVGP</Description>
   </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SharpGVGP.Core\SharpGVGP.Core.csproj" />
+  </ItemGroup>
 
 </Project>
